@@ -1,0 +1,6 @@
+.board-squares {
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  border: 1px solid black;
+}
