@@ -1,15 +1,14 @@
 $(function () {
     
-  var num_squares = 6;
   $('#startgame').click(function() {
-    setUpGame(num_squares);
+    var num_squares = setUpGame();
     $('#main').on('sortupdate', function() {
       var win = detectWin(num_squares);
       if (win) {
         $('#main').prepend("<h1 id='wintext'>YOU WIN</h1>");
         $('#main').append("<button id='newgame'>Play Again</button>");
         $('#newgame').click(function() {
-          setUpGame(num_squares);
+          num_squares = setUpGame();
         });
       }
     });
@@ -18,13 +17,16 @@ $(function () {
 });
 
 // makes squares sortable
-var setUpGame = function(num_squares) {
+var setUpGame = function() {
   $('#startgame').hide();
   $('#main').empty();
-  var variant_color = createBoard(num_squares);
+  // generates random number between 6 and 9 inclusive
+  var num_squares = Math.floor(Math.random() * 4 + 6);
+  createBoard(num_squares);
   $('#main').sortable({
     items: '> .board-squares'
   });
+  return num_squares;
 };
 
 // generate colors of squares
@@ -64,7 +66,6 @@ var createBoard = function(num_squares) {
     $('#main').append("<div style=background-color:" + colors[ii].rgb + 
       " class='board-squares' id=" + colors[ii].id + "></div>");
   }
-  return base_colors.which;
 };
 
 // detects if order is winning order
