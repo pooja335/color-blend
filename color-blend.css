@@ -10,11 +10,11 @@
   border-radius: 5px;
   margin: 1px;
 }
-@keyframes wintext {
+@-webkit-keyframes wintext {
   from { font-size: 0px; }
   to { font-size: 50px; }
 }
-@keyframes newgame {
+@-webkit-keyframes newgame {
   0% { 
     color: transparent; 
     background-color: transparent;
@@ -34,8 +34,9 @@
   text-align: center;
   font-family: sans-serif;
   color: lightseagreen;
-  animation-name: wintext;
-  animation-duration: 2s;
+  -webkit-animation-name: wintext;
+  -webkit-animation-duration: 2s;
+
 }
 #newgame {
   display: block;
@@ -45,8 +46,9 @@
   background-color: lightseagreen;
   margin: 30px auto;
   outline: none;
-  animation-name: newgame;
-  animation-duration: 2s;
+  -webkit-animation-name: newgame;
+  -webkit-animation-duration: 2s;
+
 }
 #startgame {
   display: block;
