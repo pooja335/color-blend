@@ -1,6 +1,59 @@
+#main {
+  text-align: center;
+  margin-top: 160px;
+}
 .board-squares {
-  height: 30px;
-  width: 30px;
+  height: 50px;
+  width: 50px;
   display: inline-block;
   border: 1px solid black;
+  border-radius: 5px;
+  margin: 1px;
+}
+@keyframes wintext {
+  from { font-size: 0px; }
+  to { font-size: 50px; }
+}
+@keyframes newgame {
+  0% { 
+    color: transparent; 
+    background-color: transparent;
+    border: none;
+  }
+  99% { 
+    color: transparent; 
+    background-color: transparent;
+    border: none;
+  }
+  100% { 
+    color: black; 
+  }
+}
+#wintext {
+  font-size: 50px;
+  text-align: center;
+  font-family: sans-serif;
+  color: lightseagreen;
+  animation-name: wintext;
+  animation-duration: 2s;
+}
+#newgame {
+  display: block;
+  font-size: 25px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: lightseagreen;
+  margin: 30px auto;
+  outline: none;
+  animation-name: newgame;
+  animation-duration: 2s;
+}
+#startgame {
+  display: block;
+  font-size: 40px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: lightseagreen;
+  margin: 160px auto auto;
+  outline: none;
 }

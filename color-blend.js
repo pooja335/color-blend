@@ -1,18 +1,31 @@
 $(function () {
     
   var num_squares = 6;
+  $('#startgame').click(function() {
+    setUpGame(num_squares);
+    $('#main').on('sortupdate', function() {
+      var win = detectWin(num_squares);
+      if (win) {
+        $('#main').prepend("<h1 id='wintext'>YOU WIN</h1>");
+        $('#main').append("<button id='newgame'>Play Again</button>");
+        $('#newgame').click(function() {
+          setUpGame(num_squares);
+        });
+      }
+    });
+  });
+
+});
+
+// makes squares sortable
+var setUpGame = function(num_squares) {
+  $('#startgame').hide();
+  $('#main').empty();
   var variant_color = createBoard(num_squares);
   $('#main').sortable({
     items: '> .board-squares'
   });
-  $('#main').on('sortupdate', function() {
-    var win = detectWin(num_squares);
-    // if (win) {
-      
-    // }
-  });
-  
-});
+};
 
 // generate colors of squares
 var generateColors = function() {
@@ -32,28 +45,29 @@ var generateColors = function() {
 
 // creates board layout
 var createBoard = function(num_squares) {
-  $("#main").empty();
+  $('#main').empty();
   var base_colors = generateColors();
   colors = [];
   colors.push({
     id: 0,
-    rgb: "rgb(" + base_colors.red + "," + base_colors.green + "," + base_colors.blue + ")"
+    rgb: 'rgb(' + base_colors.red + ',' + base_colors.green + ',' + base_colors.blue + ')'
   });
   for (var ii = 1; ii < num_squares; ii++) {
     base_colors[base_colors.which] += 20;
     colors.push({
       id: ii,
-      rgb: "rgb(" + base_colors.red + "," + base_colors.green + "," + base_colors.blue + ")"
+      rgb: 'rgb(' + base_colors.red + ',' + base_colors.green + ',' + base_colors.blue + ')'
     });
   }
   colors = _.shuffle(colors);
   for (ii = 0; ii < num_squares; ii++) {
-    $("#main").append("<div style=background-color:" + colors[ii].rgb + 
+    $('#main').append("<div style=background-color:" + colors[ii].rgb + 
       " class='board-squares' id=" + colors[ii].id + "></div>");
   }
   return base_colors.which;
 };
 
+// detects if order is winning order
 var detectWin = function(num_squares) {
   var order = $('#main').sortable('toArray');
   _.each(order, function(num, index) {
@@ -69,7 +83,6 @@ var detectWin = function(num_squares) {
       return order[index] == index;
     }
   });
-  console.log(is_win);
   return is_win;
 };
 
