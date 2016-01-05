@@ -37,11 +37,13 @@ var generateColors = function() {
     blue: 0,
     which: ''
   };
-  colors.red = Math.floor(Math.random() * 155);
-  colors.green = Math.floor(Math.random() * 155);
-  colors.blue = Math.floor(Math.random() * 155);
   var whichColor = Math.floor(Math.random() * 3);
   colors.which = _.keys(colors)[whichColor];
+  var firstNotColor = _.keys(colors)[(whichColor + 1) % 3];
+  var secondNotColor = _.keys(colors)[(whichColor + 2) % 3];
+  colors[colors.which] = Math.floor(Math.random() * 95);
+  colors[firstNotColor] = Math.floor(Math.random() * 255);
+  colors[secondNotColor] = Math.floor(Math.random() * 255);
   return colors;
 };
 
