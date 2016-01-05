@@ -36,7 +36,6 @@
   color: lightseagreen;
   -webkit-animation-name: wintext;
   -webkit-animation-duration: 2s;
-
 }
 #newgame {
   display: block;
@@ -48,7 +47,6 @@
   outline: none;
   -webkit-animation-name: newgame;
   -webkit-animation-duration: 2s;
-
 }
 #startgame {
   display: block;
